@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Syafiq Yusuf | Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* --- Base Styles & Variables --- */
+        :root {
+            --bg-dark: #0f172a; /* slate-900 */
+            --bg-light: #f8fafc; /* slate-50 */
+            --text-dark: #e2e8f0; /* slate-200 */
+            --text-light: #0f172a; /* slate-900 */
+            --border-dark: #334155; /* slate-700 */
+            --border-light: #e2e8f0; /* slate-200 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        html.dark body {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        html:not(.dark) body {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        /* --- Aurora Background Effect --- */
+        .aurora-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .aurora {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+        }
+
+        .aurora-1 {
+            width: 500px;
+            height: 500px;
+            background: #f59e0b; /* amber-500 */
+            top: -150px;
+            left: -150px;
+            animation: moveAurora1 20s infinite alternate ease-in-out;
+        }
+
+        .aurora-2 {
+            width: 400px;
+            height: 400px;
+            background: #f97316; /* orange-500 */
+            top: 50px;
+            right: -100px;
+            animation: moveAurora2 25s infinite alternate ease-in-out;
+        }
+        
+        html:not(.dark) .aurora {
+             opacity: 0.2;
+        }
+
+        @keyframes moveAurora1 {
+            from { transform: translate(-150px, -150px) rotate(0deg); }
+            to { transform: translate(100px, 150px) rotate(180deg); }
+        }
+
+        @keyframes moveAurora2 {
+            from { transform: translate(-100px, 50px) rotate(0deg); }
+            to { transform: translate(150px, -100px) rotate(-180deg); }
+        }
+
+
+        /* --- Glass Effect --- */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        html:not(.dark) .glass-effect {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Text & Links --- */
+        .gradient-text {
+            background: linear-gradient(to right, #f59e0b, #fbbf24); /* amber-500 to amber-400 */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Light Mode Overrides --- */
+        html:not(.dark) .text-slate-300 { color: #475569; } /* slate-600 */ 
+        html:not(.dark) .text-slate-400 { color: #64748b; } /* slate-500 */
+        html:not(.dark) .text-slate-500 { color: #94a3b8; } /* slate-400 */
+        html:not(.dark) .text-white { color: #0f172a; } /* slate-900 */
+        html:not(.dark) .border-slate-800 { border-color: var(--border-light); }
+        html:not(.dark) .border-slate-700 { border-color: #cbd5e1; } /* slate-300 */
+        html:not(.dark) .bg-slate-700\/50 { background-color: rgba(226, 232, 240, 0.7); }
+        html:not(.dark) .hover\:bg-slate-700\/50:hover { background-color: rgba(203, 213, 225, 0.7); }
+        
+        /* --- Utility classes --- */
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        @media (min-width: 768px) {
+            .section-padding {
+                padding-top: 8rem;
+                padding-bottom: 8rem;
+            }
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800; /* font-extrabold */
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 8px;
+            transition: transform 0.3s ease;
+        }
+        .skill-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+
+<body class="antialiased relative">
+    
+    <div class="aurora-background">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-extrabold tracking-wider gradient-text">MSY</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a id="navHome" href="#home" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Home</a>
+                <a id="navAbout" href="#about" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">About</a>
+                <a id="navSkills" href="#skills" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Skills</a>
+                <a id="navTools" href="#tools" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Tools</a>
+                <a id="navProjects" href="#projects" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Projects</a>
+                <!-- <a id="navCertificates" href="#certificates" class="text-slate-300 hover:text-sky-400 transition-colors duration-300">Certificates</a> -->
+                <a id="navContact" href="#contact" class="text-slate-300 hover:text-amber-400 transition-colors duration-300">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-2">
+                 <div id="languageSwitcher" class="flex items-center space-x-1 p-1 rounded-full bg-slate-700/50">
+                    <button onclick="setLanguage('en')" class="px-3 py-1 text-sm rounded-full transition-colors">EN</button>
+                    <button onclick="setLanguage('id')" class="px-3 py-1 text-sm rounded-full transition-colors">ID</button>
+                </div>
+                 <button id="theme-toggle" type="button" class="p-2 rounded-full text-slate-300 hover:bg-slate-700/50 focus:outline-none transition-colors">
+                    <i id="theme-toggle-dark-icon" data-feather="moon" class="w-5 h-5"></i>
+                    <i id="theme-toggle-light-icon" data-feather="sun" class="w-5 h-5 hidden"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-full text-slate-300 hover:bg-slate-700/50 focus:outline-none transition-colors">
+                    <i data-feather="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 glass-effect border-t border-slate-800">
+            <a id="mobileNavHome" href="#home" class="block py-2 text-slate-300 hover:text-amber-400 transition-colors">Home</a>
+            <a id="mobileNavAbout" href="#about" class="block py-2 text-slate-300 hover:text-amber-400 transition-colors">About</a>
+            <a id="mobileNavSkills" href="#skills" class="block py-2 text-slate-300 hover:text-amber-400 transition-colors">Skills</a>
+            <a id="mobileNavTools" href="#tools" class="block py-2 text-slate-300 hover:text-amber-400 transition-colors">Tools</a>
+            <a id="mobileNavProjects" href="#projects" class="block py-2 text-slate-300 hover:text-amber-400 transition-colors">Projects</a>
+            <!-- <a id="mobileNavCertificates" href="#certificates" class="block py-2 text-slate-300 hover:text-sky-400 transition-colors">Certificates</a> -->
+            <a id="mobileNavContact" href="#contact" class="block py-2 text-slate-300 hover:text-amber-400 transition-colors">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 relative z-10">
+
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center">
+            <img src="Profil.jpg" 
+                 onerror="this.onerror=null;this.src='https://placehold.co/180x180/0f172a/e2e8f0?text=MSY';" 
+                 alt="Profile Picture" class="w-44 h-44 rounded-full object-cover mb-6 border-4 border-slate-700 shadow-2xl shadow-slate-900/50">
+            <h1 id="heroGreeting" class="text-4xl md:text-6xl font-extrabold mb-4">Hi, I'm <span class="gradient-text">Muhammad Syafiq Yusuf</span></h1>
+            <p id="heroDescription" class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-8">A passionate Full Stack Developer, Graphic Designer, and Game Developer, dedicated to creating innovative and engaging digital experiences.</p>
+            <a href="#projects" id="heroButton" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                View My Work
+            </a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section-padding">
+            <h2 id="aboutHeading" class="section-title">About Me</h2>
+            <!-- New About Me Layout -->
+            <div class="glass-effect rounded-xl shadow-lg overflow-hidden">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-3/5 p-8 md:p-12 text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-4 text-white">A Creative Mind, A Technical Hand</h3>
+                    <p id="aboutParagraph" class="text-slate-400 leading-relaxed">
+                        As a versatile and creative professional, I bring a unique blend of skills in full stack development, graphic design, and game development. I am passionate about building comprehensive web solutions, creating compelling visual designs, and developing interactive games. My goal is to merge technical expertise with creative vision to deliver innovative and engaging digital experiences.
+                    </p>
+                    </div>
+                    <div class="md:w-2/5">
+                        <img src="https://placehold.co/400x400/0f172a/fbbf24?text=MSY" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/0f172a/fbbf24?text=MSY';" 
+                             alt="About Me Image" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section-padding">
+            <h2 id="skillsHeading" class="section-title">My Skills</h2>
+            <!-- New Skills Layout with Icons -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="skill-item"><i data-feather="code" class="skill-icon"></i><span>HTML, CSS, JS</span></div>
+                <div class="skill-item"><i data-feather="cpu" class="skill-icon"></i><span>Java & Python</span></div>
+                <div class="skill-item"><i data-feather="smartphone" class="skill-icon"></i><span>Flutter & Android</span></div>
+                <div class="skill-item"><i data-feather="layout" class="skill-icon"></i><span>Web Design</span></div>
+                <div class="skill-item"><i data-feather="pen-tool" class="skill-icon"></i><span>Graphic Design</span></div>
+                <div class="skill-item"><i data-feather="scissors" class="skill-icon"></i><span>Video Editing</span></div>
+                <div class="skill-item"><i data-feather="camera" class="skill-icon"></i><span>Photography</span></div>
+                <div class="skill-item"><i data-feather="target" class="skill-icon"></i><span>Game Development</span></div>
+                <div class="skill-item"><i data-feather="server" class="skill-icon"></i><span>Full Stack Dev</span></div>
+                <div class="skill-item"><i data-feather="video" class="skill-icon"></i><span>Videography</span></div>
+            </div>
+        </section>
+
+        <!-- Tools & Software Section -->
+        <section id="tools" class="section-padding">
+            <h2 id="toolsHeading" class="section-title">Tools & Software</h2>
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-8 text-center max-w-5xl mx-auto">
+                <div class="tool-item"><img src="vscode.svg" alt="VS Code Logo" class="tool-icon"><p>VS Code</p></div>
+                <div class="tool-item"><img src="figmalogo.svg" alt="Figma Logo" class="tool-icon"><p>Figma</p></div>
+                <div class="tool-item"><img src="photoshoplogo.svg" alt="Photoshop Logo" class="tool-icon"><p>Photoshop</p></div>
+                <div class="tool-item"><img src="premierepro.svg" alt="Premiere Pro Logo" class="tool-icon"><p>Premiere Pro</p></div>
+                <div class="tool-item"><img src="Capcut-logo.svg" alt="CapCut Logo" class="tool-icon"><p>CapCut</p></div>
+                <div class="tool-item"><img src="Canva_Logo.svg" alt="Canva Logo" class="tool-icon"><p>Canva</p></div>
+                <div class="tool-item"><img src="Roblox_Studio_logo_-_2022.svg" alt="Roblox Studio Logo" class="tool-icon"><p>Roblox Studio</p></div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-padding">
+            <h2 id="projectsHeading" class="section-title">My Projects</h2>
+            <!-- New 3-Column Project Layout -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="aplikasi.html" class="project-card">
+                    <h3 class="text-xl font-semibold mb-2">Applications</h3>
+                    <p class="text-slate-400">View my application projects.</p>
+                </a>
+                <a href="#" class="project-card">
+                    <h3 class="text-xl font-semibold mb-2">Designs</h3>
+                    <p class="text-slate-400">Explore my graphic design work.</p>
+                </a>
+                <a href="#" class="project-card">
+                    <h3 class="text-xl font-semibold mb-2">Editing Results</h3>
+                    <p class="text-slate-400">See my photo and video editing portfolio.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <!-- <section id="certificates" class="section-padding">
+            <h2 id="certificatesHeading" class="section-title">My Certificates</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div class="certificate-item"><img src="Sertif 1.png" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0f172a/334155?text=Sertifikat';" alt="Certificate 1" class="rounded-md"></div>
+                <div class="certificate-item"><img src="Sertif 2.png" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0f172a/334155?text=Sertifikat';" alt="Certificate 2" class="rounded-md"></div>
+                <div class="certificate-item"><img src="Sertif 3.png" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0f172a/334155?text=Sertifikat';" alt="Certificate 3" class="rounded-md"></div>
+                <div class="certificate-item"><img src="Sertif 4.png" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0f172a/334155?text=Sertifikat';" alt="Certificate 4" class="rounded-md"></div>
+                <div class="certificate-item"><img src="Sertif 5.png" onerror="this.onerror=null;this.src='https://placehold.co/300x200/0f172a/334155?text=Sertifikat';" alt="Certificate 5" class="rounded-md"></div>
+            </div>
+        </section> -->
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-padding">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 id="contactHeading" class="section-title">Contact Me</h2>
+                <p id="contactSubheading" class="text-slate-400 mb-8 -mt-6">For business inquiries, please contact me below.</p>
+                <form id="contact-form" class="space-y-6">
+                    <input type="text" id="name" name="from_name" placeholder="Your Name" class="form-input" required>
+                    <input type="email" id="email" name="from_email" placeholder="Your Email" class="form-input" required>
+                    <textarea id="message" name="message" placeholder="Your Message" rows="5" class="form-input" required></textarea>
+                    <button type="submit" id="sendButton" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                        Send Message
+                    </button>
+                </form>
+                <div class="mt-12">
+                    <p class="text-slate-400 mb-4">Or reach out via social media:</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="" target="_blank" class="social-link" id="whatsapp"><i data-feather="message-circle" class="w-6 h-6"></i></a>
+                        <a href="" target="_blank" class="social-link" id="instagram"><i data-feather="instagram" class="w-6 h-6"></i></a>
+                        <a href="mailto:syafiqyusuf0308@gmail.com" target="_blank" class="social-link" id="gmail"><i data-feather="mail" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 mt-16">
+        <div class="container mx-auto px-6 py-6 text-center text-slate-500">
+            <p id="footerText">&copy; 2025 Muhammad Syafiq Yusuf. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="hidden fixed bottom-6 right-6 bg-amber-500/80 hover:bg-amber-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50">
+        <i data-feather="arrow-up" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Success/Error Modal -->
+    <div id="statusModal" class="modal fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modalContent" class="glass-effect rounded-lg p-8 shadow-xl w-11/12 max-w-sm transform transition-transform duration-300 scale-95">
+            <h3 id="modalTitle" class="text-2xl font-bold mb-4"></h3>
+            <p id="modalMessage" class="text-slate-300"></p>
+            <button id="closeModalBtn" class="mt-6 w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">Close</button>
+        </div>
+    </div>
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        // --- Feather Icons ---
+        feather.replace();
+
+        // --- Theme Switcher ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'light' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.remove('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+            themeToggleDarkIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.add('hidden');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // --- Dynamic Class Application ---
+        function applyStyles() {
+            const skillItemClasses = 'glass-effect p-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-500/20 flex items-center gap-4';
+            const toolItemClasses = 'glass-effect p-4 rounded-lg transition-all duration-300 text-center hover:bg-slate-700/50';
+            const projectCardClasses = 'glass-effect p-6 rounded-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/20 border border-transparent hover:border-amber-500';
+            const certificateItemClasses = 'glass-effect p-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg';
+            const formInputClasses = 'w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all';
+            const socialLinkClasses = 'p-3 rounded-full glass-effect text-slate-300 hover:text-amber-400 transition-all duration-300 hover:scale-110';
+
+            // Re-run feather icons after adding new ones dynamically
+            feather.replace({
+                'stroke-width': 1.5
+            });
+
+            document.querySelectorAll('.skill-item').forEach(el => el.className = skillItemClasses);
+            document.querySelectorAll('.tool-item').forEach(el => {
+                el.className = toolItemClasses;
+                el.addEventListener('mouseenter', () => el.querySelector('.tool-icon').style.transform = 'scale(1.1)');
+                el.addEventListener('mouseleave', () => el.querySelector('.tool-icon').style.transform = 'scale(1)');
+            });
+            document.querySelectorAll('.project-card').forEach(el => el.className = projectCardClasses);
+            document.querySelectorAll('.certificate-item').forEach(el => el.className = certificateItemClasses);
+            document.querySelectorAll('.form-input').forEach(el => el.className = `form-input ${formInputClasses}`);
+            document.querySelectorAll('.social-link').forEach(el => el.className = socialLinkClasses);
+        }
+        applyStyles();
+        
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Scroll to Top Button ---
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('hidden');
+            } else {
+                scrollToTopBtn.classList.add('hidden');
+            }
+        });
+        scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // --- Modal Logic ---
+        const statusModal = document.getElementById('statusModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function showModal(title, message, isSuccess) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modalTitle.className = `text-2xl font-bold mb-4 ${isSuccess ? 'text-green-400' : 'text-red-400'}`;
+            statusModal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+        }
+
+        function hideModal() {
+            statusModal.classList.add('opacity-0');
+            setTimeout(() => statusModal.classList.add('pointer-events-none'), 300);
+            modalContent.classList.add('scale-95');
+        }
+        closeModalBtn.addEventListener('click', hideModal);
+        statusModal.addEventListener('click', (e) => { if (e.target === statusModal) hideModal(); });
+
+        // --- EmailJS Contact Form ---
+        (function() {
+            emailjs.init({ publicKey: "syafiqyusuf0308@gmail.com" }); // Ganti dengan Public Key Anda
+        })();
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const sendButton = document.getElementById('sendButton');
+            sendButton.disabled = true;
+            sendButton.textContent = 'Sending...';
+
+            emailjs.sendForm('service_ye70ivf', 'YOUR_TEMPLATE_ID', this) // Ganti YOUR_TEMPLATE_ID
+                .then(() => {
+                    showModal('Success!', 'Your message has been sent successfully.', true);
+                    document.getElementById('contact-form').reset();
+                }, (error) => {
+                    console.log('FAILED...', error);
+                    showModal('Error!', 'Sorry, there was an error. Please try again later.', false);
+                })
+                .finally(() => {
+                    sendButton.disabled = false;
+                    setLanguage(currentLanguage); 
+                });
+        });
+
+        // --- Language Switcher ---
+        let currentLanguage = 'en';
+        const translations = {
+            en: {
+                navHome: "Home", navAbout: "About", navSkills: "Skills", navTools: "Tools", navProjects: "Projects", navCertificates: "Certificates", navContact: "Contact",
+                heroGreeting: "Hi, I'm <span class='gradient-text'>Muhammad Syafiq Yusuf</span>",
+                heroDescription: "A passionate Full Stack Developer, Graphic Designer, and Game Developer, dedicated to creating innovative and engaging digital experiences.",
+                heroButton: "View My Work",
+                aboutHeading: "About Me",
+                aboutParagraph: "As a versatile and creative professional, I bring a unique blend of skills in full stack development, graphic design, and game development. I am passionate about building comprehensive web solutions, creating compelling visual designs, and developing interactive games. My goal is to merge technical expertise with creative vision to deliver innovative and engaging digital experiences.",
+                skillsHeading: "My Skills",
+                toolsHeading: "Tools & Software",
+                projectsHeading: "My Projects",
+                certificatesHeading: "My Certificates",
+                contactHeading: "Contact Me",
+                contactSubheading: "For business inquiries, please contact me below.",
+                namePlaceholder: "Your Name",
+                emailPlaceholder: "Your Email",
+                messagePlaceholder: "Your Message",
+                sendButton: "Send Message",
+                footerText: "© 2025 Muhammad Syafiq Yusuf. All rights reserved."
+            },
+            id: {
+                navHome: "Beranda", navAbout: "Tentang", navSkills: "Keahlian", navTools: "Alat", navProjects: "Proyek", navCertificates: "Sertifikat", navContact: "Kontak",
+                heroGreeting: "Hai, saya <span class='gradient-text'>Muhammad Syafiq Yusuf</span>",
+                heroDescription: "Seorang Full Stack Developer, Desainer Grafis, dan Game Developer yang bersemangat, berdedikasi untuk menciptakan pengalaman digital yang inovatif dan menarik.",
+                heroButton: "Lihat Karya Saya",
+                aboutHeading: "Tentang Saya",
+                aboutParagraph: "Sebagai seorang profesional yang serba bisa dan kreatif, saya membawa perpaduan unik antara keahlian dalam pengembangan full stack, desain grafis, dan pengembangan game. Saya bersemangat dalam membangun solusi web yang komprehensif, menciptakan desain visual yang menarik, dan mengembangkan game interaktif. Tujuan saya adalah menggabungkan keahlian teknis dengan visi kreatif untuk memberikan pengalaman digital yang inovatif dan menarik.",
+                skillsHeading: "Keahlian Saya",
+                toolsHeading: "Alat & Perangkat Lunak",
+                projectsHeading: "Proyek Saya",
+                certificatesHeading: "Sertifikat Saya",
+                contactHeading: "Hubungi Saya",
+                contactSubheading: "Untuk pertanyaan bisnis, silakan hubungi saya di bawah ini.",
+                namePlaceholder: "Nama Anda",
+                emailPlaceholder: "Email Anda",
+                messagePlaceholder: "Pesan Anda",
+                sendButton: "Kirim Pesan",
+                footerText: "© 2025 Muhammad Syafiq Yusuf. Hak cipta dilindungi undang-undang."
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang];
+            const elements = {
+                'navHome': t.navHome, 'navAbout': t.navAbout, 'navSkills': t.navSkills, 'navTools': t.navTools, 'navProjects': t.navProjects, 'navCertificates': t.navCertificates, 'navContact': t.navContact,
+                'mobileNavHome': t.navHome, 'mobileNavAbout': t.navAbout, 'mobileNavSkills': t.navSkills, 'mobileNavTools': t.navTools, 'mobileNavProjects': t.navProjects, 'mobileNavCertificates': t.navCertificates, 'mobileNavContact': t.navContact,
+                'heroGreeting': t.heroGreeting, 'heroDescription': t.heroDescription, 'heroButton': t.heroButton,
+                'aboutHeading': t.aboutHeading, 'aboutParagraph': t.aboutParagraph,
+                'skillsHeading': t.skillsHeading, 'toolsHeading': t.toolsHeading, 'projectsHeading': t.projectsHeading, 'certificatesHeading': t.certificatesHeading,
+                'contactHeading': t.contactHeading, 'contactSubheading': t.contactSubheading, 'sendButton': t.sendButton,
+                'footerText': t.footerText
+            };
+            for (const id in elements) {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'heroGreeting') el.innerHTML = elements[id];
+                    else el.innerText = elements[id];
+                }
+            }
+            document.getElementById('name').placeholder = t.namePlaceholder;
+            document.getElementById('email').placeholder = t.emailPlaceholder;
+            document.getElementById('message').placeholder = t.messagePlaceholder;
+            
+            // Update active language button style
+            document.querySelectorAll('#languageSwitcher button').forEach(btn => {
+                btn.classList.toggle('bg-amber-500', btn.innerText.toLowerCase() === lang);
+                btn.classList.toggle('text-white', btn.innerText.toLowerCase() === lang);
+            });
+        }
+        
+        setLanguage('en');
+
+    </script>
+</body>
+
+</html>

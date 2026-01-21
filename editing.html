@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Editing - My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #0d1117;
+            color: white;
+            text-align: center;
+            scroll-behavior: smooth;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(74, 83, 95, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #e0ceab;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffbb33;
+        }
+        .editing-section {
+            padding: 100px 20px;
+            background: #161b22;
+            border-radius: 10px;
+            margin: 50px auto;
+            max-width: 1000px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+        .editing-section h2 {
+            color: #ffbb33;
+            margin-bottom: 20px;
+        }
+        .editing-description {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .editing-images {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .editing-images img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Back Button */
+        .back-button {
+            background: #ff5733;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-button:hover {
+            background: #ffbb33;
+            color: black;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1 class="logo">My Portfolio</h1>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#certificates">Certificates</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="aplikasi.html">Aplikasi</a></li>
+                <li><a href="desain.html">Desain</a></li>
+                <li><a href="editing.html">Editing</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="editing-section">
+        <h2>My Editing Work</h2>
+        <p class="editing-description">
+            Here are some of the photo and video edits I have created. These showcase my skills in photo manipulation, color grading, and video production.
+        </p>
+        
+        <div class="editing-images">
+            <div>
+                <img src="editing1.jpg" alt="Editing 1">
+                <p>Editing 1 - Description of what this edit involves.</p>
+            </div>
+            <div>
+                <img src="editing2.jpg" alt="Editing 2">
+                <p>Editing 2 - Description of what this edit involves.</p>
+            </div>
+            <div>
+                <img src="editing3.jpg" alt="Editing 3">
+                <p>Editing 3 - Description of what this edit involves.</p>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <a href="portofolio.html" class="back-button">Back to Portfolio</a>
+    </section>
+
+    <script>
+        // Add smooth scroll to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            });
+        });
+    </script>
+</body>
+</html>
